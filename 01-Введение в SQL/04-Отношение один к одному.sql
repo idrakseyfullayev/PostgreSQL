@@ -24,6 +24,8 @@ INSERT INTO passport VALUES (2, 789012, 2, 'Winterfell');
 INSERT INTO passport VALUES (3, 345678, 3, 'King''s Landing');
 
 
+Отношение много к многим
+
 DROP TABLE IF EXISTS book
 DROP TABLE IF EXISTS author
 
