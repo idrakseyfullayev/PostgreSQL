@@ -46,7 +46,7 @@ CREATE TABLE author
 CREATE TABLE book_author
 (
 	book_id int REFERENCES book(book_id),
-	author_id int REFERENCES book(book_id),
+	author_id int REFERENCES author(author_id),
 	
 	CONSTRAINT book_author_pkey PRIMARY KEY (book_id, author_id) -- composite key
 );
