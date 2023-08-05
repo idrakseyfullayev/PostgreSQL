@@ -16,3 +16,7 @@ WHERE rating > 4.5;
 
 SELECT * FROM best_authors;
 
+INSERT INTO best_authors
+SELECT *
+FROM author
+WHERE rating IS NULL;
