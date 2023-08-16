@@ -64,7 +64,7 @@ VALUES
 (2, 'Alice', 4.0),
 (3, 'John', 4.7);
 
-INSERT INTO author
+INSERT INTO book_author
 VALUES
 (1, 1),
 (2, 1),
