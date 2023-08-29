@@ -25,6 +25,20 @@ VALUES
 	
 DROP TABLE IF EXISTS book;
 
+
+CREATE TABLE book
+(
+	book_id serial NOT NULL,
+	title text NOT NULL,
+	isbn varchar(32) NOT NULL,
+	publisher_id int NOT NULL,
+	
+	CONSTRAINT PK_book_book_id PRIMARY KEY(book_id)
+);
+
+ALTER SEQUENCE book_book_id_seq RESTART WITH 10
+
+
 CREATE TABLE book
 (
 	book_id int GENERATED ALWAYS AS IDENTITY (START WITH 10 INCREMENT BY 2) NOT NULL,
@@ -72,6 +86,9 @@ VALUES ('title', 'isbn', 1);
 ALTER TABLE book
 ALTER COLUMN book_id SET DEFAULT nextval('book_book_id_seq');
 
+ALTER SEQUENCE book_book_id_seq RESTART WITH 10
+
+	
 --now should work
 INSERT INTO book (title, isbn, publisher_id)
 VALUES ('title', 'isbn', 1);
