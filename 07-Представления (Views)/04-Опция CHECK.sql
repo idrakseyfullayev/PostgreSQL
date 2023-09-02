@@ -15,6 +15,10 @@ SELECT *
 FROM heavy_orders
 WHERE order_id = 11900;
 
+SELECT *
+FROM orders
+WHERE order_id = 11900;
+
 CREATE OR REPLACE VIEW heavy_orders AS
 SELECT * 
 FROM orders
@@ -25,5 +29,5 @@ CREATE OR REPLACE VIEW heavy_orders AS
 SELECT * 
 FROM orders
 WHERE freight > 100
-WITH CASCADE CHECK OPTION;
+WITH CASCADED CHECK OPTION;
 
