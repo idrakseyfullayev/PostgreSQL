@@ -25,10 +25,22 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
 SELECT get_max_price_by_discontinued();
 SELECT * FROM get_max_price_by_discontinued();
 
+
+DROP FUNCTION get_max_price_by_discontinued()
+CREATE OR REPLACE FUNCTION get_max_price_by_discontinued() RETURNS SETOF real AS $$
+BEGIN
+	RETURN QUERY
+	SELECT MAX(unit_price)
+	FROM products
+	GROUP BY category_id;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT  get_max_price_by_discontinued()
+SELECT * FROM  get_max_price_by_discontinued()
 
 
 
