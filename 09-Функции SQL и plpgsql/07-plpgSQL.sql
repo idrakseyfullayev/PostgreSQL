@@ -19,20 +19,20 @@ $$ LANGUAGE plpgsql;
 SELECT get_max_price_from_discontinued();
 
 
-DROP FUNCTION get_max_price_by_discontinued();
-CREATE OR REPLACE FUNCTION get_max_price_by_discontinued() RETURNS bigint AS $$
+DROP FUNCTION get_max_price();
+CREATE OR REPLACE FUNCTION get_max_price() RETURNS bigint AS $$
 BEGIN
 	RETURN MAX(unit_price)
 	FROM products;
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT get_max_price_by_discontinued();
-SELECT * FROM get_max_price_by_discontinued();
+SELECT get_max_price();
+SELECT * FROM get_max_price();
 
 
-DROP FUNCTION get_max_price_by_discontinued();
-CREATE OR REPLACE FUNCTION get_max_price_by_discontinued() RETURNS SETOF real AS $$
+DROP FUNCTION get_max_price_by_category();
+CREATE OR REPLACE FUNCTION get_max_price_by_category() RETURNS SETOF real AS $$
 BEGIN
 	RETURN QUERY
 	SELECT MAX(unit_price)
@@ -41,8 +41,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT  get_max_price_by_discontinued();
-SELECT * FROM  get_max_price_by_discontinued();
+SELECT  get_max_price_by_category();
+SELECT * FROM  get_max_price_by_category();
 
 
 CREATE OR REPLACE FUNCTION get_price_boundaries(OUT max_price real, OUT min_price real) AS $$
@@ -58,8 +58,8 @@ $$ LANGUAGE plpgsql;
 SELECT * FROM get_price_boundaries();
 
 
-DROP FUNCTION get_max_price_by_discontinued();
-CREATE OR REPLACE FUNCTION get_max_price_by_discontinued(OUT max_price real, OUT cat_id smallint) RETURNS SETOF RECORD AS $$
+DROP FUNCTION get_max_price_by_category();
+CREATE OR REPLACE FUNCTION get_max_price_by_category(OUT max_price real, OUT cat_id smallint) RETURNS SETOF RECORD AS $$
 BEGIN
 	RETURN QUERY
 	SELECT MAX(unit_price), category_id 
@@ -68,8 +68,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT get_max_price_by_discontinued();
-SELECT * FROM get_max_price_by_discontinued();
+SELECT get_max_price_by_category();
+SELECT * FROM get_max_price_by_category();
 
 
 
