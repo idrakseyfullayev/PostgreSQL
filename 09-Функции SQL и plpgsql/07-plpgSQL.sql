@@ -72,6 +72,25 @@ SELECT get_max_price_by_category();
 SELECT * FROM get_max_price_by_category();
 
 
+DROP FUNCTION get_max_price_by_category();
+CREATE OR REPLACE FUNCTION get_max_price_by_category() RETURNS SETOF RECORD AS $$
+BEGIN
+	RETURN QUERY
+	SELECT MAX(unit_price), category_id 
+	FROM products
+	WHERE discontinued = 1
+	GROUP BY category_id;
+END;
+$$ LANGUAGE plpgsql;
+
+-- don't work
+SELECT get_max_price_by_category();
+SELECT * FROM get_max_price_by_category();
+
+-- work this only
+SELECT * FROM get_max_price_by_category() AS (max_price real, cat_id smallint);
+
+
 
 CREATE OR REPLACE FUNCTION get_sum(x int, y int, out result int) AS $$
 BEGIN
