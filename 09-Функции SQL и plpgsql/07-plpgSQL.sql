@@ -16,6 +16,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+SELECT get_max_price_from_discontinued();
+
 
 DROP FUNCTION get_max_price_by_discontinued();
 CREATE OR REPLACE FUNCTION get_max_price_by_discontinued() RETURNS bigint AS $$
@@ -42,8 +44,6 @@ $$ LANGUAGE plpgsql;
 SELECT  get_max_price_by_discontinued();
 SELECT * FROM  get_max_price_by_discontinued();
 
-
-SELECT get_max_price_from_discontinued();
 
 CREATE OR REPLACE FUNCTION get_price_boundaries(OUT max_price real, OUT min_price real) AS $$
 BEGIN
