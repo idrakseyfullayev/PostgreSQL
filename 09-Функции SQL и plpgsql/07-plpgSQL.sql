@@ -78,7 +78,6 @@ BEGIN
 	RETURN QUERY
 	SELECT MAX(unit_price), category_id 
 	FROM products
-	WHERE discontinued = 1
 	GROUP BY category_id;
 END;
 $$ LANGUAGE plpgsql;
