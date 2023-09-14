@@ -29,7 +29,7 @@ SELECT get_max_price_by_discontinued();
 SELECT * FROM get_max_price_by_discontinued();
 
 
-DROP FUNCTION get_max_price_by_discontinued()
+DROP FUNCTION get_max_price_by_discontinued();
 CREATE OR REPLACE FUNCTION get_max_price_by_discontinued() RETURNS SETOF real AS $$
 BEGIN
 	RETURN QUERY
@@ -39,9 +39,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT  get_max_price_by_discontinued()
-SELECT * FROM  get_max_price_by_discontinued()
-
+SELECT  get_max_price_by_discontinued();
+SELECT * FROM  get_max_price_by_discontinued();
 
 
 SELECT get_max_price_from_discontinued();
@@ -57,6 +56,22 @@ END;
 $$ LANGUAGE plpgsql;
 
 SELECT * FROM get_price_boundaries();
+
+
+DROP FUNCTION get_max_price_by_discontinued();
+CREATE OR REPLACE FUNCTION get_max_price_by_discontinued(OUT max_price real, OUT cat_id smallint) RETURNS SETOF RECORD AS $$
+BEGIN
+	RETURN QUERY
+	SELECT MAX(unit_price), category_id 
+	FROM products
+	GROUP BY category_id;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT get_max_price_by_discontinued();
+SELECT * FROM get_max_price_by_discontinued();
+
+
 
 CREATE OR REPLACE FUNCTION get_sum(x int, y int, out result int) AS $$
 BEGIN
