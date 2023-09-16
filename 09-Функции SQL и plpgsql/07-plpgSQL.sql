@@ -113,7 +113,20 @@ $$ LANGUAGE plpgsql;
 SELECT * FROM get_customers_by_country('USA');
 
 
+drop function if exists get_customers_by_country;
+create or replace function get_customers_by_country(customer_country varchar) 
+		returns table(char_code char, company_name varchar) as $$
+BEGIN
+	RETURN QUERY
+	select customer_id, customers.company_name
+	from customers	
+	where country = customer_country;
+END;
+$$ language plpgsql;
 
+SELECT * FROM get_customers_by_country('France')
+
+	
 --* Declaring variables*--:
 drop function if exists get_square;
 create or replace function get_square(ab real, bc real, ac real) returns real AS $$
