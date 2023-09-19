@@ -143,7 +143,7 @@ $$ LANGUAGE PLPGSQL;
 SELECT get_square(6, 6, 6)
 
 --*Final example here*--
-CREATE OR REPLACE FUNCTION middle_priced()
+CREATE OR REPLACE FUNCTION calc_middle_price()
 RETURNS SETOF products AS $$
 
 	DECLARE
