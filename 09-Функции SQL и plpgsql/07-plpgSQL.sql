@@ -161,3 +161,5 @@ RETURNS SETOF products AS $$
 		WHERE unit_price between bottom_price AND top_price;
 	END;
 $$ LANGUAGE plpgsql;
+
+SELECT * FROM calc_middle_price()
