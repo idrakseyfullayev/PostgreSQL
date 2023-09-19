@@ -129,16 +129,18 @@ SELECT * FROM get_customers_by_country('France')
 	
 --* Declaring variables*--:
 drop function if exists get_square;
-create or replace function get_square(ab real, bc real, ac real) returns real AS $$
-declare
-	perimeter real;
-begin
-	perimeter:=(ab+bc+ac)/2;
-	return sqrt(perimeter * (perimeter - ab) * (perimeter - bc) * (perimeter - ac));
-end;
-$$ language plpgsql;
+CREATE OR REPLACE FUNCTION get_square(ab real, bc real, ac real) RETURNS real AS $$
+DECLARE
+	p real;
+	perimetr real;
+BEGIN
+	perimetr = ab + bc + ac;
+	p = perimetr / 2;
+	RETURN SQRT(p * (p-ab) * (p-bc) * (p-ac));
+END;
+$$ LANGUAGE PLPGSQL;
 
-select get_square(6, 6, 6)
+SELECT get_square(6, 6, 6)
 
 --*Final example here*--
 CREATE OR REPLACE FUNCTION middle_priced()
