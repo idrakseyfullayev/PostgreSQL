@@ -11,7 +11,19 @@ END;
 $$
 
 
-
+DO $$
+DECLARE
+	counter integer := 0;
+	sum_ integer := 0;
+BEGIN
+	WHILE counter <= 10
+		LOOP
+			sum_ := sum_ + counter;
+			counter := counter + 1;
+		END LOOP;
+	RAISE NOTICE '%', sum_;
+END;
+$$
 
 
 
