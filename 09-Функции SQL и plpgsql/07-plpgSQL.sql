@@ -91,9 +91,9 @@ SELECT * FROM get_max_price_by_category() AS (max_price real, cat_id smallint);
 
 
 
-CREATE OR REPLACE FUNCTION get_sum(x int, y int, out result int) AS $$
+CREATE OR REPLACE FUNCTION get_sum(x int, y int, out result_ int) AS $$
 BEGIN
-	result = x + y;
+	result_ = x + y;
 	RETURN;
 END;
 $$ LANGUAGE plpgsql;
