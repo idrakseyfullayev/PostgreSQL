@@ -142,6 +142,24 @@ $$ LANGUAGE PLPGSQL;
 
 SELECT get_square(6, 6, 6)
 
+
+drop function if exists get_square;
+CREATE OR REPLACE FUNCTION get_square(ab real, bc real, ac real) RETURNS real AS $$
+DECLARE
+	p real;
+	perimetr real;
+	c real;
+BEGIN
+	perimetr = ab + bc + ac;
+	p = perimetr / 2;
+	c = SQRT(p * (p-ab) * (p-bc) * (p-ac));
+	RETURN c;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT get_square(6, 6, 6);	
+
+	
 --*Final example here*--
 CREATE OR REPLACE FUNCTION calc_middle_price()
 RETURNS SETOF products AS $$
