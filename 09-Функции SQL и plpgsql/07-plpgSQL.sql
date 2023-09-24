@@ -157,7 +157,23 @@ BEGIN
 END;
 $$ LANGUAGE PLPGSQL;
 
-SELECT get_square(6, 6, 6);	
+SELECT get_square(6, 6, 6);
+
+
+drop function if exists get_square;
+CREATE OR REPLACE FUNCTION get_square(ab real, bc real, ac real, OUT c real) RETURNS real AS $$
+DECLARE
+	p real;
+	perimetr real;
+BEGIN
+	perimetr = ab + bc + ac;
+	p = perimetr / 2;
+	c = SQRT(p * (p-ab) * (p-bc) * (p-ac));
+	RETURN;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT get_square(6, 6, 6);
 
 	
 --*Final example here*--
