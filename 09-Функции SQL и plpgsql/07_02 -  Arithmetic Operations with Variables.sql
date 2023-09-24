@@ -6,7 +6,7 @@ DEClARE
 BEGIN
 	RAISE NOTICE 'value 1: %', x;
 	RAISE NOTICE 'value 2: %', y;
-	RAISE NOTICE 'Summer: %', sum_;
+	RAISE NOTICE 'Sum: %', sum_;
 END;	
 $$;
 
@@ -18,6 +18,6 @@ DEClARE
 BEGIN
 	RAISE NOTICE 'value 1: %', x;
 	RAISE NOTICE 'value 2: %', y;
-	RAISE NOTICE 'Summer: %', x+y;
+	RAISE NOTICE 'Sum: %', x+y;
 END;	
 $$;
