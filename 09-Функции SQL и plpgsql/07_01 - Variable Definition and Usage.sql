@@ -5,11 +5,23 @@ BEGIN
 END;	
 $$;
 
+
 DO $$
 DEClARE
 	x int := 20;
 BEGIN
 	RAISE NOTICE  '%', x;
 	RAISE NOTICE 'value 1: %', 1;
+END;	
+$$;
+
+
+DO $$
+DEClARE
+	x int := 20;
+	y int := 15;
+BEGIN
+	RAISE NOTICE 'value 1: %', x;
+	RAISE NOTICE 'value 2: %', y;
 END;	
 $$;
