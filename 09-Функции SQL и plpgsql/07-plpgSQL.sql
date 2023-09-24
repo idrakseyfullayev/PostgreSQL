@@ -100,6 +100,21 @@ $$ LANGUAGE plpgsql;
 
 SELECT * FROM get_sum(2, 3);
 
+
+drop function if exists get_sum;
+CREATE OR REPLACE FUNCTION get_sum(x int, y int) RETURNS int AS $$
+DECLARE
+	result_ int;
+BEGIN
+	result_ = x + y;
+	RETURN result_;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_sum(2, 3);
+
+
+
 DROP FUNCTION IF EXISTS get_customers_by_country;
 CREATE FUNCTION get_customers_by_country(customer_country varchar) RETURNS SETOF customers AS $$
 BEGIN
