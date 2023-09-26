@@ -10,3 +10,16 @@ BEGIN
 	END IF;	
 END;
 $$;
+
+
+DO $$
+DECLARE
+	number_ int := 16;
+BEGIN
+	IF number_ % 2 THEN
+		RAISE NOTICE '% is odd number', number_;
+	ELSE
+		RAISE NOTICE '% is even number', number_;
+	END IF;	
+END;
+$$;
