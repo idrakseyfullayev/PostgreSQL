@@ -55,3 +55,20 @@ BEGIN
 	END IF;	
 END;
 $$;
+
+
+DO $$
+DECLARE
+	count_ int;
+BEGIN
+	count_ := (SELECT count(*) FROM products WHERE category_id = 
+			   (SELECT category_id FROM categories 
+				WHERE category_name = 'Beverages'));
+	  
+	IF count_ > 10 THEN
+		RAISE NOTICE 'count % by category', count_;
+	ELSE
+		RAISE NOTICE 'count less than 10';
+	END IF;	
+END;
+$$;
