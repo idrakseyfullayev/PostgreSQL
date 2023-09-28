@@ -22,3 +22,19 @@ BEGIN
 	END LOOP;
 END;
 $$;
+
+
+DO $$
+DECLARE
+	counter int := 1;
+	sum_ int := 0;
+BEGIN
+	LOOP
+		sum_ := sum_ + counter;
+		EXIT WHEN counter = 10;
+		counter := counter + 1;
+	END LOOP;
+	
+	RAISE NOTICE 'Sum: %', sum_;
+END;
+$$;
