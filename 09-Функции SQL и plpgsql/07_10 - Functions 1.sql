@@ -1,4 +1,18 @@
-
+DROP FUNCTION sum_
+CREATE OR REPLACE FUNCTION sum_() RETURNS int
+LANGUAGE PLPGSQL
+AS $$
+DECLARE
+	s1 int := 45;
+	s2 int := 30;
+	result_ int;
+BEGIN
+	result_ := s1 + s2;
+	RETURN result_;
+END;
+$$;
+	
+SELECT sum_()
 
 
 
