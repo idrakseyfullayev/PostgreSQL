@@ -2,11 +2,12 @@ CREATE OR REPLACE PROCEDURE test()
 LANGUAGE PLPGSQL
 AS $$
 BEGIN
-	RAISE NOTICE 'Salam'
+	RAISE NOTICE 'Salam';
 END;
-$$
+$$;
 
-CALL test()
+call test()
+
 
 
 CREATE OR REPLACE PROCEDURE category_add(cat_id smallint, cat_name varchar(15), descp text, picture bytea)
