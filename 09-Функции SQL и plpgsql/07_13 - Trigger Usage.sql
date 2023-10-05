@@ -1,12 +1,19 @@
-INSERT INTO sum_products (number_) VALUES (77);
+CREATE TABLE sum_products
+(
+	counter_ int
+);
+
+SELECT * FROM sum_products;
+SELECT * FROM products;
 SELECT COUNT(*) FROM products;
+INSERT INTO sum_products (counter_) VALUES (77);
 
 SELECT * FROM sum_products;
 
 DROP FUNCTION test_1;
 CREATE OR REPLACE FUNCTION test_1() RETURNS TRIGGER AS $$
 BEGIN
-	UPDATE sum_products SET number_ = number_ + 1;
+	UPDATE sum_products SET counter_ = counter_ + 1;
 	RETURN NEW;
 END;
 $$ LANGUAGE PLPGSQL;
