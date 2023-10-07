@@ -6,4 +6,8 @@ SELECT CHAR_LENGTH('SQL Tutorial') AS LengthOfString;
 SELECT CHARACTER_LENGTH('SQL Tutorial') AS LengthOfString;
 
 SELECT CONCAT('SQL ' , 'Tutorial ', ' is ', 'fun!');
-SELECT CONCAT_WS(' * ', 'SQL' , 'Tutorial', 'is', 'fun!'); 
+SELECT CONCAT_WS(' * ', 'SQL' , 'Tutorial', 'is', 'fun!');
+SELECT CONCAT ('Post', 'greSQL')
+SELECT CONCAT ('Post', ' ', 'greSQL')
+SELECT 'Post' || 'greSQL'
+SELECT 'Post' || ' ' || 'greSQL'
