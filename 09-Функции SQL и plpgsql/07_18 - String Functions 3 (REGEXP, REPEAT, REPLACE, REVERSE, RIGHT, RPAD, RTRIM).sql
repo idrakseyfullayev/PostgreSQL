@@ -11,6 +11,8 @@ SELECT REPEAT('*', 5);
 
 SELECT REPLACE('ABC', 'B', 'A');
 SELECT REPLACE('Azerbaycan', 'baycan', 'i Yurdu');
+SELECT product_name FROM products;
+SELECT REPLACE(product_name, 'C', 'A') FROM products; 
 
 SELECT REVERSE('ABC');
 SELECT REVERSE('Idrak');
