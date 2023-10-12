@@ -1,4 +1,4 @@
-SELECT ASCII('A');
+SELECT ASCII('A'); -- Return the ASCII code value of a character or Unicode code point of a UTF8 character
 SELECT ASCII('a');
 
 SELECT CHR(65);
