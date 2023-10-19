@@ -3,6 +3,12 @@ SELECT AGE('2017-01-01','2011-06-24');
 
 SELECT AGE(timestamp '1987-03-31'); -- Subtract argument from current_date (at midnight)
 
+SELECT order_id, order_date, AGE(order_date)
+FROM orders;
+
+SELECT order_id, order_date, AGE(now(), order_date)
+FROM orders
+
 SELECT clock_timestamp(); -- Current date and time (changes during statement execution); see Section 9.9.5
 
 SELECT current_date; -- Return the current date
