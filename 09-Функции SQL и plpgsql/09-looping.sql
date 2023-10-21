@@ -1,4 +1,3 @@
-
 CREATE OR REPLACE FUNCTION fibonacci (n INTEGER) 
    RETURNS INTEGER AS $$ 
 DECLARE
@@ -6,18 +5,21 @@ DECLARE
    i INTEGER := 0 ; 
    j INTEGER := 1 ;
 BEGIN
-   IF (n < 1) THEN
+   IF n = 1 THEN
       RETURN 0 ;
    END IF; 
    
-   WHILE counter <= n 
+   WHILE counter + 3 <= n
    LOOP
-      counter := counter + 1 ; 
       SELECT j, i + j INTO i, j;
+	  counter := counter + 1; 
    END LOOP ; 
    
-   RETURN i ;
-END ;
+   RETURN j ;
+END;
+$$ LANGUAGE PLPGSQL;
+SELECT fibonacci(8);
+
 -- rewritten with explicit exit instead if WHILE--
 CREATE OR REPLACE FUNCTION fibonacci (n INTEGER) 
    RETURNS INTEGER AS $$ 
