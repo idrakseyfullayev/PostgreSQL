@@ -42,6 +42,31 @@ BEGIN
 END $$ LANGUAGE PLPGSQL;
 
 
+DO $$
+DECLARE
+	counter int := 0;
+	i int := 0;
+	j int := 1;
+	n int := 8;
+BEGIN
+	if n = 1 THEN
+		RAISE NOTICE '0';
+	END IF;
+		
+	RAISE NOTICE '%', i;
+	RAISE NOTICE '%', j;	
+
+	LOOP
+		
+		SELECT j, i +j INTO i, j;
+		counter = counter + 1;
+		RAISE NOTICE '%', j;
+		EXIT WHEN counter = n-2;
+	END LOOP;	
+END
+$$;
+
+
 CREATE OR REPLACE FUNCTION fibonacci (n INTEGER) 
    RETURNS INTEGER AS $$ 
 DECLARE
