@@ -28,10 +28,9 @@ DECLARE
 	j int := 1;
 	n int := 8;
 BEGIN
-	if n = 1 THEN
+	IF n = 1 THEN
 		RAISE NOTICE '0';
-	END IF;
-	
+	ElSE
 	WHILE counter + 3 <= n
 		LOOP
 			SELECT j, i +j INTO i, j;
@@ -39,6 +38,7 @@ BEGIN
 		END LOOP;
 		
 	RAISE NOTICE '%', j;
+	END IF;
 END $$ LANGUAGE PLPGSQL;
 
 
