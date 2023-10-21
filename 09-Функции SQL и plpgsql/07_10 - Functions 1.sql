@@ -30,23 +30,6 @@ $$;
 SELECT sum_(45, 30)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 CREATE OR REPLACE FUNCTION category_add(cat_id smallint, cat_name varchar(15), descp text, picture bytea) RETURNS void
 LANGUAGE SQL
 AS $$
