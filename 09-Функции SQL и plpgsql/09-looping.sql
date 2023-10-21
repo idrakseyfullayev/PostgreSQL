@@ -18,6 +18,7 @@ BEGIN
    RETURN j ;
 END;
 $$ LANGUAGE PLPGSQL;
+
 SELECT fibonacci(8);
 
 -- rewritten with explicit exit instead if WHILE--
