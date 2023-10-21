@@ -7,16 +7,16 @@ DECLARE
 BEGIN
 	if n = 1 THEN
 		RAISE NOTICE '0';
-	END IF;
-		
-	RAISE NOTICE '%', i;
-	RAISE NOTICE '%', j;	
+	ELSE
+		RAISE NOTICE '%', i;
+		RAISE NOTICE '%', j;	
 	WHILE counter + 3 <= n
 		LOOP
 			SELECT j, i +j INTO i, j;
 			counter = counter + 1;
 			RAISE NOTICE '%', j;
-		END LOOP;		
+		END LOOP;
+	END IF;	
 END
 $$;
 
