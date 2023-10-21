@@ -41,3 +41,27 @@ $$ language plpgsql;
 
 select get_season(12)
 
+	
+CREATE OR REPLACE FUNCTION get_season_100(month_number int) RETURNS text AS $$
+DECLARE
+	season text;
+BEGIN
+	IF month_number BETWEEN 1 AND 12 THEN
+		IF month_number BETWEEN 3 AND 5 THEN
+			season := 'Spring';
+		ELSEIF month_number BETWEEN 6 AND 8 THEN
+			season := 'Summer';
+		ELSIF month_number BETWEEN 9 AND 11 THEN
+			season := 'Autumn';	
+		ELSE
+			season := 'Winter';
+		END IF;
+		RETURN season;
+	ELSE
+		RETURN 'your give error number';
+	END IF;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT get_season_100(13);
+
