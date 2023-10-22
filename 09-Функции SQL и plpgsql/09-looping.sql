@@ -161,6 +161,17 @@ BEGIN
 END; $$
 
 
+DO $$
+DECLARE
+	counter RECORD;
+BEGIN 
+  FOR counter IN SELECT employee_id  FROM employees
+  	LOOP
+    RAISE NOTICE 'Counter: %', counter;
+  END LOOP;
+END; $$
+
+
 CREATE OR REPLACE FUNCTION return_ints() RETURNS SETOF int AS $$
 BEGIN
 	RETURN NEXT 1;
