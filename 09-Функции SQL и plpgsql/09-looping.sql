@@ -67,6 +67,28 @@ END
 $$;
 
 
+DO $$
+DECLARE
+	counter int := 0;
+	i int := 0;
+	j int := 1;
+	n int := 8;
+BEGIN
+	if n <= 1 THEN
+		RAISE NOTICE '0';
+	
+	ELSE
+	LOOP
+		EXIT WHEN counter + 2 = n;
+		SELECT j, i +j INTO i, j;
+		counter = counter + 1;
+	END LOOP;
+	RAISE NOTICE '%', j;
+	END IF;	
+END
+$$	
+
+
 CREATE OR REPLACE FUNCTION fibonacci (n INTEGER) 
    RETURNS INTEGER AS $$ 
 DECLARE
