@@ -136,6 +136,7 @@ $$ LANGUAGE PLPGSQL;
 
 SELECT fibonacci_2(8);
 
+
 -- FOR IN --
 DO $$
 BEGIN
@@ -158,6 +159,20 @@ BEGIN
     RAISE NOTICE 'Counter: %', counter;
   END LOOP;
 END; $$
+
+
+CREATE OR REPLACE FUNCTION return_ints() RETURNS SETOF int AS $$
+BEGIN
+	RETURN NEXT 1;
+	RETURN NEXT 2;
+	RETURN NEXT 3;
+	--RETURN;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT return_ints();
+SELECT * FROM return_ints();
+
 
 --*Continue and Iterate Over Array*--
 CREATE OR REPLACE FUNCTION filter_even(variadic numbers int[]) returns setof int 
