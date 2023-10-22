@@ -113,27 +113,28 @@ $$ LANGUAGE PLPGSQL;
 SELECT fibonacci(8);
 
 -- rewritten with explicit exit instead if WHILE--
-CREATE OR REPLACE FUNCTION fibonacci (n INTEGER) 
+CREATE OR REPLACE FUNCTION fibonacci_2 (n INTEGER) 
    RETURNS INTEGER AS $$ 
 DECLARE
-   counter INTEGER := 0 ; 
-   i INTEGER := 0 ; 
-   j INTEGER := 1 ;
+	counter INTEGER := 0 ; 
+	i INTEGER := 0 ; 
+	j INTEGER := 1 ;
 BEGIN
- 
-   IF (n < 1) THEN
-      RETURN 0 ;
-   END IF; 
+	IF n <= 1 THEN
+		RETURN 0 ;
+	END IF; 
    
-   LOOP 
-      EXIT WHEN counter = n ; 
-      counter := counter + 1 ; 
-      SELECT j, i + j INTO i,   j ;
-   END LOOP ; 
+	LOOP
+		EXIT WHEN counter + 2 = n;
+		SELECT j, i + j INTO i, j;
+		counter := counter + 1; 
+	END LOOP ; 
    
-   RETURN i ;
-END ; 
-$$ LANGUAGE plpgsql;
+	RETURN j ;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT fibonacci_2(8);
 
 -- FOR IN --
 DO $$
