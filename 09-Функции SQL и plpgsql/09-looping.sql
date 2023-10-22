@@ -49,20 +49,20 @@ DECLARE
 	j int := 1;
 	n int := 8;
 BEGIN
-	if n = 1 THEN
+	if n <= 1 THEN
 		RAISE NOTICE '0';
-	END IF;
-		
+	
+	ELSE
 	RAISE NOTICE '%', i;
 	RAISE NOTICE '%', j;	
 
 	LOOP
-		
+		EXIT WHEN counter + 2 = n;
 		SELECT j, i +j INTO i, j;
 		counter = counter + 1;
 		RAISE NOTICE '%', j;
-		EXIT WHEN counter = n-2;
-	END LOOP;	
+	END LOOP;
+	END IF;	
 END
 $$;
 
