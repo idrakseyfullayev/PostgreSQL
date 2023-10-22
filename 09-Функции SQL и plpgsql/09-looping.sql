@@ -287,3 +287,14 @@ END;
 $$ LANGUAGE plpgsql;
 
 SELECT * FROM after_christmas_sale();
+
+
+SELECT product_id, product_name, unit_price * 0.8 FROM products 
+WHERE category_id IN (1, 4, 8)
+UNION
+SELECT product_id, product_name, unit_price * 0.75 FROM products 
+WHERE category_id IN (2, 3, 7)
+UNION
+SELECT product_id, product_name, unit_price * 1.15 FROM products 
+WHERE category_id NOT IN (1, 4, 8, 2, 3, 7)
+ORDER BY product_id
