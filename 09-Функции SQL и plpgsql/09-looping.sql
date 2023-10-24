@@ -298,3 +298,16 @@ UNION
 SELECT product_id, product_name, unit_price * 1.15 FROM products 
 WHERE category_id NOT IN (1, 4, 8, 2, 3, 7)
 ORDER BY product_id
+
+
+SELECT product_id, category_id, product_name, unit_price,
+	CASE 
+		WHEN category_id IN (1, 4, 8) THEN
+			unit_price * 0.8
+		WHEN category_id IN (2, 3, 7) THEN
+			unit_price * 0.75
+		ELSE
+			unit_price * 1.15
+	END	
+FROM products
+ORDER BY product_id
