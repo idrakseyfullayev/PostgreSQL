@@ -172,6 +172,32 @@ BEGIN
 END; $$
 
 
+DO $$
+DECLARE
+	counter int;
+BEGIN
+ FOREACH counter in ARRAY ARRAY[1, 8, 3, 7, 9, 8]
+ 	LOOP
+		RAISE NOTICE '%', counter;
+	END LOOP;
+END;
+$$;
+
+
+do $body$
+declare
+  arr1 int[] := array[1, 2];
+  arr2 int[] := array[3, 4, 5];
+  var int;
+begin
+  <<"FOREACH eaxmple">>
+  foreach var in array arr1||arr2 loop
+    raise info '%', var;
+  end loop "FOREACH eaxmple";
+end;
+$body$;
+
+
 CREATE OR REPLACE FUNCTION return_ints() RETURNS SETOF int AS $$
 BEGIN
 	RETURN NEXT 1;
