@@ -46,3 +46,23 @@ FROM GENERATE_SERIES(1, 7);
 
 SELECT random_between(7, 10)
 FROM GENERATE_SERIES(1, 7, 2);
+
+
+DROP FUNCTION get_salary_bounds_by_city(emp_city varchar,
+								OUT min_salary numeric, OUT max_salary numeric)
+CREATE OR REPLACE FUNCTION get_salary_bounds_by_city(emp_city varchar,
+								OUT min_salary numeric, OUT max_salary numeric) AS $$
+	SELECT MIN(salary), MAX(salary)
+	FROM employees
+	WHERE city = emp_city;
+$$ LANGUAGE SQL;								
+
+SELECT * FROM get_salary_bounds_by_city('London')
+
+ALTER TABLE employees ADD column salary numeric; 
+SELECT salary FROM employees;
+SELECT * FROM employees;
+
+UPDATE employees
+SET salary = employee_id * 0.4 * 20;
+
