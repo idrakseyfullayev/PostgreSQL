@@ -67,7 +67,7 @@ UPDATE employees
 SET salary = employee_id * 0.4 * 20;
 
 
-CREATE OR REPLACE FUNCTION correcrt_salary(upper_boundry numeric DEFAULT 70,
+CREATE OR REPLACE FUNCTION correct_salary(upper_boundry numeric DEFAULT 70,
 										 correction_rate numeric DEFAULT 0.15)
 										 RETURNS VOID AS $$
 	UPDATE employees
@@ -75,7 +75,22 @@ CREATE OR REPLACE FUNCTION correcrt_salary(upper_boundry numeric DEFAULT 70,
 	WHERE salary <= upper_boundry
 $$ LANGUAGE SQL;										 
 
-SELECT correcrt_salary();
-SELECT correcrt_salary(10, 2);
+SELECT correct_salary();
+SELECT correct_salary(10, 2);
+SELECT salary FROM employees;
+
+
+DROP FUNCTION correct_salary;
+CREATE OR REPLACE FUNCTION correct_salary(upper_boundry numeric DEFAULT 70,
+										 correction_rate numeric DEFAULT 0.15)
+										 RETURNS SETOF employees AS $$
+	UPDATE employees
+	SET salary = salary + (salary * correction_rate)
+	WHERE salary <= upper_boundry
+	RETURNING *
+$$ LANGUAGE SQL;										 
+
+SELECT salary FROM correct_salary();
+SELECT correct_salary(10, 2);
 SELECT salary FROM employees;
 
