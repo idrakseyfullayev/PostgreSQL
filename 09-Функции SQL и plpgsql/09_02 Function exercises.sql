@@ -11,3 +11,11 @@ $$ LANGUAGE SQL;
 SELECT backup_customers();
 
 SELECT COUNT(*) FROM backedup_customers;
+
+
+CREATE OR REPLACE FUNCTION get_avg_freight() RETURNS double precision AS $$
+	SELECT AVG(freight) FROM orders;
+$$ LANGUAGE SQL;
+
+SELECT * FROM orders;
+SELECT get_avg_freight();
