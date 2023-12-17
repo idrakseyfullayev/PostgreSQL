@@ -94,3 +94,21 @@ SELECT salary FROM correct_salary();
 SELECT correct_salary(10, 2);
 SELECT salary FROM employees;
 
+
+DROP FUNCTION correct_salary;
+CREATE OR REPLACE FUNCTION correct_salary(upper_boundry numeric DEFAULT 70,
+										 correction_rate numeric DEFAULT 0.15)
+										 RETURNS TABLE(first_name varchar, last_name
+													   varchar, salary numeric) 
+										 AS $$
+	UPDATE employees
+	SET salary = salary + (salary * correction_rate)
+	WHERE salary <= upper_boundry
+	RETURNING first_name, last_name, salary
+$$ LANGUAGE SQL;										 
+
+SELECT * FROM correct_salary();
+SELECT * FROM correct_salary(100, 0.45);
+SELECT salary FROM employees;
+
+
