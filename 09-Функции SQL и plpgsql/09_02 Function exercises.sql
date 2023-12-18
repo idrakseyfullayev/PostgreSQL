@@ -141,3 +141,34 @@ $$ LANGUAGE PLPGSQL;
 
 SELECT count(*) FROM get_orders_by_shiping(1);
 SELECT * FROM get_orders_by_shiping(1) ORDER BY freight DESC
+
+
+DROP FUNCTION should_increase_salary;
+CREATE OR REPLACE FUNCTION should_increase_salary(
+	cur_salary numeric,
+	max_salary numeric DEFAULT 80,	
+	min_salary numeric DEFAULT 30,
+	increase_rate numeric DEFAULT 0.2
+) RETURNS bool AS $$
+DECLARE
+	new_salary numeric;
+BEGIN
+	IF cur_salary >= max_salary	OR cur_salary >= min_salary THEN
+		RETURN FALSE;
+	END IF;
+	
+	IF cur_salary < min_salary THEN
+		new_salary = cur_salary + (cur_salary * increase_rate);
+	END IF;
+	
+	IF new_salary > max_salary THEN
+		RETURN FALSE;
+	ELSE
+		RETURN TRUE;
+	END IF;	
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT should_increase_salary(40, 80 ,30, 0.2);
+SELECT should_increase_salary(79, 81, 80, 0.2);
+SELECT should_increase_salary(79, 95, 90, 0.2);
