@@ -112,3 +112,32 @@ SELECT * FROM correct_salary(100, 0.45);
 SELECT salary FROM employees;
 
 
+DROP FUNCTION get_orders_by_shiping(ship_method int)
+CREATE OR REPLACE FUNCTION get_orders_by_shiping(ship_method int) RETURNS SETOF orders AS $$
+DECLARE
+	average numeric;
+	maximum numeric;
+	middle numeric;
+BEGIN
+	SELECT MAX(freight) INTO maximum
+	FROM orders
+	WHERE ship_via = ship_method;
+	
+	SELECT AVG(freight) INTO average
+	FROM orders
+	WHERE ship_via = ship_method;
+	
+	maximum = maximum - (maximum * 0.3);
+	
+	middle = (maximum + average) / 2;
+-- 	return middle;
+	RETURN QUERY
+	SELECT * 
+	FROM orders
+	WHERE freight < middle AND ship_via = ship_method;
+	
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT count(*) FROM get_orders_by_shiping(1);
+SELECT * FROM get_orders_by_shiping(1) ORDER BY freight DESC
