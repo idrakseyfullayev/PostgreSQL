@@ -87,3 +87,23 @@ END;
 $$ language plpgsql;
 
 select get_season_caller2(15);
+
+
+CREATE OR REPLACE FUNCTION get_season_caller3(month_number int) RETURNS teXT AS $$	
+BEGIN
+	RETURN get_season(month_number);
+	EXCEPTION 
+		WHEN SQLSTATE '12885' THEN
+			RAISE INFO 'My customer handler:';
+			RAISE INFO 'error name: %', SQLERRM;
+			RAISE INFO 'error details: %', SQLSTATE;
+			RETURN NULL;
+		WHEN OTHERS THEN
+			RAISE INFO 'My customer handler OTHERS:';
+			RAISE INFO 'error name: %', SQLERRM;
+			RAISE INFO 'error details: %', SQLSTATE;
+			RETURN NULL;		
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT get_season_caller3(15)
