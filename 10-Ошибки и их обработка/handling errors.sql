@@ -56,7 +56,7 @@ declare
 	err_details text;
 	err_code text;
 BEGIN
-    return get_season(15);
+    return get_season(month_number);
 EXCEPTION
 	WHEN SQLSTATE '12882' then
         GET STACKED DIAGNOSTICS err_ctx = PG_EXCEPTION_CONTEXT,
@@ -73,13 +73,8 @@ END;
 $$ language plpgsql;
 
 create or replace function get_season_caller2(month_number int) returns text AS $$
-declare
-	err_ctx text;
-	text_var1 text;
-	text_var2 text;
-	text_var3 text;
 BEGIN
-    return get_season(15);
+    return get_season(month_number);
 EXCEPTION
     --when others then
 	WHEN SQLSTATE '12882' then  
