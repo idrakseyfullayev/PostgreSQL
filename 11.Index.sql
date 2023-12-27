@@ -12,7 +12,7 @@ FROM generate_series(1, 10000000) AS s(id)
 ORDER BY random();
 
 UPDATE perf_test
-SET annotation = md5(UPPER(random()::text));
+SET annotation = UPPER(md5(random()::text));
 
 
 SELECT * FROM perf_test
