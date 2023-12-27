@@ -88,3 +88,21 @@ FROM perf_test
 WHERE annotation LIKE 'AB%';
 
 
+**********************************************************************************
+	
+EXPLAIN
+SELECT * 
+FROM perf_test
+WHERE annotation LIKE 'AB%';
+
+CREATE INDEX idx_perf_test_annotation ON perf_test(annotation);
+
+EXPLAIN
+SELECT * 
+FROM perf_test
+WHERE annotation LIKE 'AB%';
+
+SELECT * 
+FROM perf_test
+WHERE annotation LIKE 'AB%';
+
