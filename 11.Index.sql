@@ -56,3 +56,35 @@ WHERE reason like 'bc%' AND annotation LIKE 'AB%';
 
 -- ANALYZE perf_test;
 
+CREATE INDEX idx_perf_test_reason_annotation ON perf_test(reason, annotation);
+
+EXPLAIN
+SELECT * 
+FROM perf_test
+WHERE reason like 'bc%' AND annotation LIKE 'AB%';
+
+SELECT * 
+FROM perf_test
+WHERE reason like 'bc%' AND annotation LIKE 'AB%';
+
+EXPLAIN
+SELECT * 
+FROM perf_test
+WHERE reason like 'bc%';
+
+SELECT * 
+FROM perf_test
+WHERE reason like 'bc%';
+
+
+-- don't work
+EXPLAIN
+SELECT * 
+FROM perf_test
+WHERE annotation LIKE 'AB%';
+
+SELECT * 
+FROM perf_test
+WHERE annotation LIKE 'AB%';
+
+
