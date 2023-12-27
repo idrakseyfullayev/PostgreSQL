@@ -26,3 +26,33 @@ EXPLAIN
 SELECT * 
 FROM perf_test
 WHERE id = 3700000;
+
+CREATE INDEX idx_per_test_id ON perf_test(id);
+
+EXPLAIN
+SELECT * 
+FROM perf_test
+WHERE id = 3700000;
+
+SELECT * 
+FROM perf_test
+WHERE id = 3700000;
+
+**********************************************************************************
+
+SELECT * 
+FROM perf_test
+WHERE reason like 'bc%' AND annotation LIKE 'AB%';
+
+EXPLAIN
+SELECT * 
+FROM perf_test
+WHERE reason like 'bc%' AND annotation LIKE 'AB%';
+
+EXPLAIN ANALYZE
+SELECT * 
+FROM perf_test
+WHERE reason like 'bc%' AND annotation LIKE 'AB%';
+
+-- ANALYZE perf_test;
+
